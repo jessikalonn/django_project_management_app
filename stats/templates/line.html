@@ -1,0 +1,51 @@
+{% extends 'base.html' %} 
+
+{% block content %}
+    <p class="lead"><h2>Annual average temperature in Sweden 1890-2021</h2></p>
+    <p>Here goes information about the graph</p>
+
+    <div class="row">
+        <div id="linechart" class="col-10">
+            {% include 'partials/temp-bar.html' %}
+        </div>
+       <div class="col-2">
+        <form>
+            <p>Still trying to figure this out</p>
+            <label>Your birthyear</label>
+            <select id="select-year" 
+                    class="custom-select" 
+                    name="year" 
+                    autocomplete="off"
+                    hx-get="{% url 'line'}"
+                    hx-target="#linechart">
+
+                {% for year in byears %}
+                <option value="{{year}}">{{year}}</option>
+                {% endfor %}
+            </select>
+        </form>
+        <form>
+            <br/>
+            <label>Parent birthyear</label>
+            <select id="select-year" 
+                    class="custom-select" 
+                    name="year" 
+                    autocomplete="off">
+                {% for year in pbyears %}
+                <option value="{{year}}">{{year}}</option>
+                {% endfor %}
+            </select>
+        </form>
+       </div>
+    </div>
+
+    <p><h3>Statistical Ideas:</h3></p>
+    <p>Your normal average (annual) temperature: </p>
+    <p>Parents normal average (annual) temperature: </p>
+    <p>Grandparents normal average (annual) temperature: </p>
+    <p>Average anunual temperature 1900-1950: Maby monthly average graph if we find monthly values?</p>
+    <p>Average anunual temperature 1950-2000: </p>
+    <p>Average anunual temperature 2000-2020: </p>
+    <p>Graph that shows monthly average for the 3 periods above? (find from same source) </p>
+
+{% endblock %}
